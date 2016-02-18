@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Archive - PuGo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="pugo-robot">
+    <meta name="keywords" content="pugo,golang,static,site,generator"/>
+    <meta name="description" content="PuGo is a Simple Static Site Generator"/>
+    <link href="/static/css/pure-min.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/static/css/blog.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/static/css/railscasts.css" type="text/css" rel="stylesheet" media="all"/>
+</head>
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar pure-u">
+    <header class="header">
+        <hgroup>
+            <h1 class="brand-title">
+                <a href="/" class="brand-title">PuGo</a>
+            </h1>
+            <h2 class="brand-tagline">Static Site Generator</h2>
+        </hgroup>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="">
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">
+                    <a href="/archive.html">Archive</a>
+                </li>
+                <li class="">
+                    <a href="/about.html">About</a>
+                </li>
+                <li class="">
+                    <a href="http://pugo.io" target="_blank" >Source</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</div>
+    <div class="pure-u-1">
+        <div class="content">
+            <div class="page-header">
+                <h1>Archives</h1>
+            </div>
+            
+            <div class="archive">
+                <h3>2015</h3>
+                
+                <ul>
+                    <li>
+                        <h4>
+                            <span class="date">2015.12.20</span>
+                            »
+                            <a href="/2015/12/20/welcome.html">Welcome</a>
+                        </h4>
+                    </li>
+                </ul>
+                
+            </div>
+            
+        </div>
+        <hr/>
+<div class="footer">
+    <p>&copy; PuGo 2015
+        powered by <a href="http://github.com/go-xiaohei/pugo">PuGo</a> with <a href="http://purecss.io" target="_blank">Pure</a>
+    </p>
+</div>
+    </div>
+</div>
+<script src="/static/js/jquery-2.1.4.min.js"></script>
+<script src="/static/js/highlight.pack.js"></script>
+<script>
+    $(document).ready(function() {
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+</body>
+</html>
