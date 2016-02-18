@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - Static Site Generator</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Thu, 18 Feb 2016 16:54:10 +0800</lastBuildDate><item><title>新的开始</title><link>http://qf.yqplan.com/2016/2/18/2016-02-18.html</link><pubDate>Thu, 18 Feb 2016 15:38:00 +0000</pubDate><description><![CDATA[ <p>换了新的博客，希望能坚持下去</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - Static Site Generator</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Thu, 18 Feb 2016 17:06:55 +0800</lastBuildDate><item><title>新的开始</title><link>http://qf.yqplan.com/2016/2/18/2016-02-18.html</link><pubDate>Thu, 18 Feb 2016 15:38:00 +0000</pubDate><description><![CDATA[ <p>换了新的博客，希望能坚持下去</p>
  ]]></description></item><item><title>我是如何将linux用在开发环境中的</title><link>http://qf.yqplan.com/2015/8/8/2016-02-18-16-31.html</link><pubDate>Sat, 08 Aug 2015 16:31:00 +0000</pubDate><category>post</category><description><![CDATA[ <h2>我为什么要写这篇文章</h2>
 
 <p>一直想深入学习一下linux的使用，于是将家里的笔记本装了linux系统，但是要将自己的系统打造一个适合开发的环境确实是一件费心费力的事，而且会经常出现一些莫名其妙的问题，以我自己的使用经验觉得要想用linux做开发环境，你要了解每个软件，不然出现一些问题就很难解决，其他不说，就是光搞好驱动问题就让人蛋疼了。</p>
@@ -38,4 +38,39 @@
 <p>然后保存就好了，如果不行还要做检查一下linux的防火墙，开放80端口。如果要让别人的电脑也能访问，还需要在windows防火墙设置一下。当然哥比较懒，因为开发的时候经常要给别人看，都是直接关闭防火墙。当然你也可以将数据库什么的都放到linux里面去，windows只装一些软件使用linux里面的服务。</p>
 
 <p>但是用虚拟机如果要想不卡对电脑的配置还是要有要求的，我是8G内存，虚拟机开2G内存，开启虚拟机，IDE等工作软件基本要占用80%-90%的内存，使用还是比较流畅的，也可以将虚拟机后台运行，只使用它的服务就好了。</p>
+ ]]></description></item><item><title>python apache下出现The _imaging C module is not installed</title><link>http://qf.yqplan.com/2013/12/12/2016-02-18-16-59.html</link><pubDate>Thu, 12 Dec 2013 16:59:00 +0000</pubDate><category>post</category><description><![CDATA[ <p>操作系统：win7 64位</p>
+
+<p>安装python版本 win32 2.7版本</p>
+
+<p>安装的PIL插件PIL-1.1.7.win32-py2.7.exe</p>
+
+<p>用本地自带的开发服务器上传图片处理等一切正常</p>
+
+<p>放到APACHE下上传图片出现</p>
+<pre><code>The _imaging C module is not installed
+</code></pre>
+
+<p>下载Pillow-2.2.1.win32-py2.7.exe 安装后正常使用</p>
+
+<p>下载地址<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a></p>
+
+<p>里面有很多python的扩展</p>
+
+<p>linux 下</p>
+
+<h4>安装PIP</h4>
+<pre><code>wget http://pypi.python.org/packages/source/p/pip/pip-1.0.2.tar.gz
+
+tar zxf pip-1.0.2.tar.gz
+
+cd pip-1.0.2
+</code></pre>
+
+<p>先要安装<code>python-deve</code></p>
+<pre><code>yum install python-devel
+
+python setup.py install
+
+pip install pillow
+</code></pre>
  ]]></description></item></channel></rss>

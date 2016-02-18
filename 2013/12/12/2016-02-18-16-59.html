@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Archive - 冻结的黎明</title>
+    <title>python apache下出现The _imaging C module is not installed - 冻结的黎明</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="河边的老牛">
     <meta name="keywords" content="pugo,golang,static,site,generator"/>
-    <meta name="description" content="go,php"/>
+    <meta name="description" content="python apache下出现The _imaging C module is not installed"/>
     <link href="/static/css/pure-min.css" type="text/css" rel="stylesheet" media="all">
     <link href="/static/css/blog.css" type="text/css" rel="stylesheet" media="all">
     <link href="/static/css/railscasts.css" type="text/css" rel="stylesheet" media="all"/>
@@ -25,7 +25,7 @@
                 <li class="">
                     <a href="/">文章</a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="/archive.html">归档</a>
                 </li>
                 <li class="">
@@ -37,53 +37,47 @@
 </div>
     <div class="pure-u-1">
         <div class="content">
-            <div class="page-header">
-                <h1>归档</h1>
-            </div>
-            
-            <div class="archive">
-                <h3>2016</h3>
-                
-                <ul>
-                    <li>
-                        <h4>
-                            <span class="date">2016.2.18</span>
-                            »
-                            <a href="/2016/2/18/2016-02-18.html">新的开始</a>
-                        </h4>
-                    </li>
-                </ul>
-                
-            </div>
-            
-            <div class="archive">
-                <h3>2015</h3>
-                
-                <ul>
-                    <li>
-                        <h4>
-                            <span class="date">2015.8.8</span>
-                            »
-                            <a href="/2015/8/8/2016-02-18-16-31.html">我是如何将linux用在开发环境中的</a>
-                        </h4>
-                    </li>
-                </ul>
-                
-            </div>
-            
-            <div class="archive">
-                <h3>2013</h3>
-                
-                <ul>
-                    <li>
-                        <h4>
-                            <span class="date">2013.12.12</span>
-                            »
-                            <a href="/2013/12/12/2016-02-18-16-59.html">python apache下出现The _imaging C module is not installed</a>
-                        </h4>
-                    </li>
-                </ul>
-                
+            <div class="post">
+                <h1 class="post-header">python apache下出现The _imaging C module is not installed</h1>
+                <div class="post-meta">
+                    <small>2013-12-12</small>
+                </div>
+                <div class="post-description"><p>操作系统：win7 64位</p>
+
+<p>安装python版本 win32 2.7版本</p>
+
+<p>安装的PIL插件PIL-1.1.7.win32-py2.7.exe</p>
+
+<p>用本地自带的开发服务器上传图片处理等一切正常</p>
+
+<p>放到APACHE下上传图片出现</p>
+<pre><code>The _imaging C module is not installed
+</code></pre>
+
+<p>下载Pillow-2.2.1.win32-py2.7.exe 安装后正常使用</p>
+
+<p>下载地址<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a></p>
+
+<p>里面有很多python的扩展</p>
+
+<p>linux 下</p>
+
+<h4>安装PIP</h4>
+<pre><code>wget http://pypi.python.org/packages/source/p/pip/pip-1.0.2.tar.gz
+
+tar zxf pip-1.0.2.tar.gz
+
+cd pip-1.0.2
+</code></pre>
+
+<p>先要安装<code>python-deve</code></p>
+<pre><code>yum install python-devel
+
+python setup.py install
+
+pip install pillow
+</code></pre>
+</div>
             </div>
             
         </div>
