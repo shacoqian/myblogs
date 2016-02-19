@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Centos7 搭建git服务器 - 冻结的黎明</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="河边的老牛">
+    <meta name="keywords" content="golang,php,python"/>
+    <meta name="description" content="Centos7 yum安装 搭建git服务器"/>
+    <link href="/static/css/pure-min.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/static/css/blog.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/static/css/railscasts.css" type="text/css" rel="stylesheet" media="all"/>
+</head>
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar pure-u">
+    <header class="header">
+        <hgroup>
+            <h1 class="brand-title">
+                <a href="/" class="brand-title">冻结的黎明</a>
+            </h1>
+        </hgroup>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="">
+                    <a href="/">文章</a>
+                </li>
+                <li class="">
+                    <a href="/archive.html">归档</a>
+                </li>
+                <li class="">
+                    <a href="/about.html">关于</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</div>
+    <div class="pure-u-1">
+        <div class="content">
+            <div class="post">
+                <h1 class="post-header">Centos7 搭建git服务器</h1>
+                <div class="post-meta">
+                    <small>2016-2-19</small>
+                </div>
+                <div class="post-description"><h4>安装</h4>
+<pre><code>yum install -y git
+</code></pre>
+
+<h4>创建用户</h4>
+<pre><code>adduser git
+</code></pre>
+
+<h4>创建登录证书</h4>
+<pre><code>cd /home/git
+
+mkdir .ssh
+
+cd .ssh
+
+//生成认证文件 authorized_keys 
+//公钥id_rsa.pub
+ssh-keygen -t rsa
+
+//公钥写入认证文件
+//这里可以将其他客户端的公钥写入这个文件进行授权认证
+cat id_rsa.pub &gt;&gt; authorized_keys 
+</code></pre>
+
+<h4>初始化git仓库</h4>
+<pre><code>mkdir /data/git
+
+cd /data/git
+
+//创建一个裸仓库
+git init --bare empty.git
+
+chown -R git:git empty.git
+</code></pre>
+
+<h4>禁用shell</h4>
+<pre><code>vim /etc/passwd
+</code></pre>
+
+<p>将</p>
+<pre><code>git:x:1001:1001:,,,:/home/git:/bin/bash
+</code></pre>
+
+<p>修改为</p>
+<pre><code>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+</code></pre>
+
+<h4>clone</h4>
+<pre><code>git clone git@x.x.x.x:/data/git/emtpy.git
+</code></pre>
+</div>
+            </div>
+            
+        </div>
+        <hr/>
+<div class="footer">
+    <p>&copy; 冻结的黎明 2016
+    </p>
+</div>
+    </div>
+</div>
+<script src="/static/js/jquery-2.1.4.min.js"></script>
+<script src="/static/js/highlight.pack.js"></script>
+<script>
+    $(document).ready(function() {
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+</body>
+</html>

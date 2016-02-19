@@ -42,6 +42,67 @@
             </div>
             
             <div class="post">
+                <h3 class="post-header"><a href="/2016/2/19/centos7-git-server.html">Centos7 搭建git服务器</a></h3>
+                <div class="post-meta">
+                    <small>2016-2-19</small>
+                </div>
+                <div class="post-description"><h4>安装</h4>
+<pre><code>yum install -y git
+</code></pre>
+
+<h4>创建用户</h4>
+<pre><code>adduser git
+</code></pre>
+
+<h4>创建登录证书</h4>
+<pre><code>cd /home/git
+
+mkdir .ssh
+
+cd .ssh
+
+//生成认证文件 authorized_keys 
+//公钥id_rsa.pub
+ssh-keygen -t rsa
+
+//公钥写入认证文件
+//这里可以将其他客户端的公钥写入这个文件进行授权认证
+cat id_rsa.pub &gt;&gt; authorized_keys 
+</code></pre>
+
+<h4>初始化git仓库</h4>
+<pre><code>mkdir /data/git
+
+cd /data/git
+
+//创建一个裸仓库
+git init --bare empty.git
+
+chown -R git:git empty.git
+</code></pre>
+
+<h4>禁用shell</h4>
+<pre><code>vim /etc/passwd
+</code></pre>
+
+<p>将</p>
+<pre><code>git:x:1001:1001:,,,:/home/git:/bin/bash
+</code></pre>
+
+<p>修改为</p>
+<pre><code>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+</code></pre>
+
+<h4>clone</h4>
+<pre><code>git clone git@x.x.x.x:/data/git/emtpy.git
+</code></pre>
+</div>
+                <div class="more">
+                    <a href="/2016/2/19/centos7-git-server.html" class="btn pure-button pure-button-primary">继续阅读..</a>
+                </div>
+            </div>
+            
+            <div class="post">
                 <h3 class="post-header"><a href="/2016/2/18/2016-02-18.html">新的开始</a></h3>
                 <div class="post-meta">
                     <small>2016-2-18</small>

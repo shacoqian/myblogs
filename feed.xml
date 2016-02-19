@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - 博客</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Fri, 19 Feb 2016 09:56:53 +0800</lastBuildDate><item><title>新的开始</title><link>http://qf.yqplan.com/2016/2/18/2016-02-18.html</link><pubDate>Thu, 18 Feb 2016 15:38:00 +0000</pubDate><description><![CDATA[ <p>换了新的博客，希望能坚持下去</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - 博客</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Fri, 19 Feb 2016 10:24:18 +0800</lastBuildDate><item><title>Centos7 搭建git服务器</title><link>http://qf.yqplan.com/2016/2/19/centos7-git-server.html</link><pubDate>Fri, 19 Feb 2016 10:02:00 +0000</pubDate><category>centos</category><category>yum</category><category>git</category><description><![CDATA[ <h4>安装</h4>
+<pre><code>yum install -y git
+</code></pre>
+
+<h4>创建用户</h4>
+<pre><code>adduser git
+</code></pre>
+
+<h4>创建登录证书</h4>
+<pre><code>cd /home/git
+
+mkdir .ssh
+
+cd .ssh
+
+//生成认证文件 authorized_keys 
+//公钥id_rsa.pub
+ssh-keygen -t rsa
+
+//公钥写入认证文件
+//这里可以将其他客户端的公钥写入这个文件进行授权认证
+cat id_rsa.pub &gt;&gt; authorized_keys 
+</code></pre>
+
+<h4>初始化git仓库</h4>
+<pre><code>mkdir /data/git
+
+cd /data/git
+
+//创建一个裸仓库
+git init --bare empty.git
+
+chown -R git:git empty.git
+</code></pre>
+
+<h4>禁用shell</h4>
+<pre><code>vim /etc/passwd
+</code></pre>
+
+<p>将</p>
+<pre><code>git:x:1001:1001:,,,:/home/git:/bin/bash
+</code></pre>
+
+<p>修改为</p>
+<pre><code>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+</code></pre>
+
+<h4>clone</h4>
+<pre><code>git clone git@x.x.x.x:/data/git/emtpy.git
+</code></pre>
+ ]]></description></item><item><title>新的开始</title><link>http://qf.yqplan.com/2016/2/18/2016-02-18.html</link><pubDate>Thu, 18 Feb 2016 15:38:00 +0000</pubDate><description><![CDATA[ <p>换了新的博客，希望能坚持下去</p>
  ]]></description></item><item><title>我是如何将linux用在开发环境中的</title><link>http://qf.yqplan.com/2015/8/8/2016-02-18-16-31.html</link><pubDate>Sat, 08 Aug 2015 16:31:00 +0000</pubDate><category>post</category><description><![CDATA[ <h2>我为什么要写这篇文章</h2>
 
 <p>一直想深入学习一下linux的使用，于是将家里的笔记本装了linux系统，但是要将自己的系统打造一个适合开发的环境确实是一件费心费力的事，而且会经常出现一些莫名其妙的问题，以我自己的使用经验觉得要想用linux做开发环境，你要了解每个软件，不然出现一些问题就很难解决，其他不说，就是光搞好驱动问题就让人蛋疼了。</p>
