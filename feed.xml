@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - 博客</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Fri, 19 Feb 2016 10:24:18 +0800</lastBuildDate><item><title>Centos7 搭建git服务器</title><link>http://qf.yqplan.com/2016/2/19/centos7-git-server.html</link><pubDate>Fri, 19 Feb 2016 10:02:00 +0000</pubDate><category>centos</category><category>yum</category><category>git</category><description><![CDATA[ <h4>安装</h4>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - 博客</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Tue, 23 Feb 2016 09:51:03 +0800</lastBuildDate><item><title>微信文档地址记录</title><link>http://qf.yqplan.com/2016/2/23/2016-02-23-09-47.html</link><pubDate>Tue, 23 Feb 2016 09:47:00 +0000</pubDate><category>微信</category><description><![CDATA[ <h4>开发文档</h4>
+
+<p><a href="http://mp.weixin.qq.com/wiki/5/f287d1a5b78a35a8884326312ac3e4ed.html">http://mp.weixin.qq.com/wiki/5/f287d1a5b78a35a8884326312ac3e4ed.html</a></p>
+
+<h4>微信支付</h4>
+
+<p><a href="https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_2">https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_2</a></p>
+ ]]></description></item><item><title>Centos7 搭建git服务器</title><link>http://qf.yqplan.com/2016/2/19/centos7-git-server.html</link><pubDate>Fri, 19 Feb 2016 10:02:00 +0000</pubDate><category>centos</category><category>yum</category><category>git</category><description><![CDATA[ <h4>安装</h4>
 <pre><code>yum install -y git
 </code></pre>
 
