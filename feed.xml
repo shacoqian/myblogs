@@ -1,4 +1,215 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - 博客</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Tue, 23 Feb 2016 09:51:03 +0800</lastBuildDate><item><title>微信文档地址记录</title><link>http://qf.yqplan.com/2016/2/23/2016-02-23-09-47.html</link><pubDate>Tue, 23 Feb 2016 09:47:00 +0000</pubDate><category>微信</category><description><![CDATA[ <h4>开发文档</h4>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>冻结的黎明 - 博客</title><link>http://qf.yqplan.com</link><description>go,php</description><lastBuildDate>Thu, 19 May 2016 14:59:58 +0800</lastBuildDate><item><title>centos7 安装和配置mongodb</title><link>http://qf.yqplan.com/2016/5/19/2016-05-19-13-59.html</link><pubDate>Thu, 19 May 2016 13:59:00 +0000</pubDate><category>centos</category><category>mongodb</category><description><![CDATA[ <h3>下载</h3>
+
+<p>官网下载地址：<a href="https://www.mongodb.com/download-center#community">https://www.mongodb.com/download-center#community</a></p>
+<pre><code>//下载
+curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.2.6.tgz
+
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                             Dload  Upload   Total   Spent    Left  Speed
+100 55.2M  100 55.2M    0     0  35665      0  0:27:05  0:27:05 --:--:-- 60124
+
+//解压
+tar -zxvf mongodb-linux-x86_64-3.2.6.tgz
+
+mongodb-linux-x86_64-3.2.6/README
+mongodb-linux-x86_64-3.2.6/THIRD-PARTY-NOTICES
+mongodb-linux-x86_64-3.2.6/MPL-2 
+mongodb-linux-x86_64-3.2.6/GNU-AGPL-3.0
+mongodb-linux-x86_64-3.2.6/bin/mongodump
+mongodb-linux-x86_64-3.2.6/bin/mongorestore
+mongodb-linux-x86_64-3.2.6/bin/mongoexport
+mongodb-linux-x86_64-3.2.6/bin/mongoimport
+mongodb-linux-x86_64-3.2.6/bin/mongostat
+mongodb-linux-x86_64-3.2.6/bin/mongotop
+mongodb-linux-x86_64-3.2.6/bin/bsondump
+mongodb-linux-x86_64-3.2.6/bin/mongofiles
+mongodb-linux-x86_64-3.2.6/bin/mongooplog
+mongodb-linux-x86_64-3.2.6/bin/mongoperf
+mongodb-linux-x86_64-3.2.6/bin/mongod
+mongodb-linux-x86_64-3.2.6/bin/mongos
+mongodb-linux-x86_64-3.2.6/bin/mongo
+
+//移动改名
+mv mongodb-linux-x86_64-3.2.6 mongodb
+</code></pre>
+
+<h3>配置</h3>
+
+<h4>1.创建目录</h4>
+<pre><code>cd /usr/local/mongodb
+
+mkdir data
+mkdir logs
+</code></pre>
+
+<h4>2.添加配置文件</h4>
+<pre><code>vim mongodb.conf 
+port=27017
+logappend=true
+fork=true
+dbpath=/usr/local/mongodb/data
+logpath=/usr/local/mongodb/logs/mongodb.log
+:wq!
+</code></pre>
+
+<h4>3.不加auth验证启动</h4>
+<pre><code>//主要是 mongodb3.x 无默认账号 需要登录后创建admin账户 后面会讲
+./bin/mongod -f mongodb.conf
+
+about to fork child process, waiting until server is ready for connections.
+forked process: 26932
+child process started successfully, parent exiting
+</code></pre>
+
+<h4>4.启动mongo shell</h4>
+<pre><code>./bin/mongo
+
+MongoDB shell version: 3.2.6
+connecting to: test 
+Welcome to the MongoDB shell.
+For interactive help, type &quot;help&quot;.
+For more comprehensive documentation, see
+    http://docs.mongodb.org/
+Questions? Try the support group
+    http://groups.google.com/group/mongodb-user
+</code></pre>
+
+<h4>5.添加管理用户</h4>
+<pre><code>use admin  
+db.createUser(  
+    {  
+        user: &quot;admin&quot;,  
+        pwd: &quot;admin&quot;,  
+        roles: [ { role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; } ]  
+   }  
+)  
+//查看创建的用户
+show users或者db.system.users.find()  
+
+{
+    &quot;_id&quot; : &quot;admin.admin&quot;,
+    &quot;user&quot; : &quot;admin&quot;,
+    &quot;db&quot; : &quot;admin&quot;,
+    &quot;roles&quot; : [
+            {
+                    &quot;role&quot; : &quot;userAdminAnyDatabase&quot;,
+                    &quot;db&quot; : &quot;admin&quot;
+            }
+    ]
+}
+</code></pre>
+
+<h4>6.关闭mongod服务 使用&ndash;auth重新启动服务</h4>
+<pre><code>ps aux | grep mongo
+
+kill -2 xxxx
+
+//重新启动
+./bin/mongod -f mongodb.conf --auth
+</code></pre>
+
+<h4>7.再次启动 mongo shell 使用auth验证登录</h4>
+<pre><code>./bin/mongo
+
+use admin
+
+db.auth(&quot;admin&quot;,&quot;admin&quot;)
+//返回1  代表认证成功
+</code></pre>
+
+<h4>8.创建用户和库</h4>
+<pre><code>use test
+
+db.createUser({  
+    user: &quot;test&quot;,  
+    pwd: &quot;test&quot;,  
+    roles: [  
+        { role: &quot;readWrite&quot;, db: &quot;test&quot; }  
+    ]  
+}) 
+</code></pre>
+
+<h4>9. 使用新创建的用户登录</h4>
+<pre><code>use test
+db.auth(&quot;test&quot;, &quot;test&quot;) 
+//返回1 登录成功
+</code></pre>
+
+<h3>开机启动</h3>
+
+<h4>1.创建开机启动脚本</h4>
+<pre><code> cd /etc/init.d/
+
+ vim mongodb
+
+ //写入以下脚本
+
+ #!/bin/bash
+
+#mongod - Startup script for mongod
+
+# chkconfig: 35 80 15
+# description: Mongo is a scalable, document-oriented database.
+# processname: mongod
+#config: /usr/local/mongodb/mongodb.conf
+# pidfile: /var/run/mongo/mongo.pid
+
+MONGOD=/usr/local/mongodb/bin/mongod
+
+mongod_start(){
+    $MONGOD -f /usr/local/mongodb/mongodb.conf -auth
+}
+mongod_stop(){
+    killall -2 mongod
+}
+
+case &quot;$1&quot; in
+start)
+    echo start...
+    mongod_start
+    if [ $? == 0 ];then
+        echo &quot;Secuss start MongoDB!&quot;
+    fi
+;;
+stop)
+    mongod_stop
+    if [ $? == 0 ];then
+        echo &quot;MongoDB is shutdown now !&quot;
+    fi
+;;
+restart)
+    mongod_stop
+    mongod_start
+;;
+*)
+echo &quot;Use args (start|stop|restart)&quot;
+;;
+esac
+
+:wq
+
+//赋予执行权限
+chmod +x /etc/init.d/mongodb
+
+//测试一下开启和关闭mongodb
+service mongodb start
+service mongodb stop
+</code></pre>
+
+<h4>2.加入开机启动</h4>
+<pre><code>chkconfig mongodb on
+</code></pre>
+
+<p>参考资料</p>
+
+<p><a href="https://www.mongodb.com/download-center#community">https://www.mongodb.com/download-center#community</a></p>
+
+<p><a href="http://blog.csdn.net/hugengyong/article/details/49799447">http://blog.csdn.net/hugengyong/article/details/49799447</a></p>
+
+<p><a href="http://blog.csdn.net/lk10207160511/article/details/50281883">http://blog.csdn.net/lk10207160511/article/details/50281883</a></p>
+
+<p><a href="http://my.oschina.net/fsxchen/blog/261887">http://my.oschina.net/fsxchen/blog/261887</a></p>
+ ]]></description></item><item><title>微信文档地址记录</title><link>http://qf.yqplan.com/2016/2/23/2016-02-23-09-47.html</link><pubDate>Tue, 23 Feb 2016 09:47:00 +0000</pubDate><category>微信</category><description><![CDATA[ <h4>开发文档</h4>
 
 <p><a href="http://mp.weixin.qq.com/wiki/5/f287d1a5b78a35a8884326312ac3e4ed.html">http://mp.weixin.qq.com/wiki/5/f287d1a5b78a35a8884326312ac3e4ed.html</a></p>
 

@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>centos - 冻结的黎明</title>
+    <title>centos7 安装和配置mongodb - 冻结的黎明</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="河边的老牛">
     <meta name="keywords" content="golang,php,python"/>
-    <meta name="description" content="go,php"/>
+    <meta name="description" content="2016-05-19-13-59"/>
     <link href="/static/css/pure-min.css" type="text/css" rel="stylesheet" media="all">
     <link href="/static/css/blog.css" type="text/css" rel="stylesheet" media="all">
     <link href="/static/css/railscasts.css" type="text/css" rel="stylesheet" media="all"/>
@@ -37,12 +37,8 @@
 </div>
     <div class="pure-u-1">
         <div class="content">
-            <div class="page-header">
-                <h1>所有文章</h1>
-            </div>
-            <h2>：centos</h2>
             <div class="post">
-                <h3 class="post-header"><a href="/2016/5/19/2016-05-19-13-59.html">centos7 安装和配置mongodb</a></h3>
+                <h1 class="post-header">centos7 安装和配置mongodb</h1>
                 <div class="post-meta">
                     <small>2016-5-19</small>
                 </div>
@@ -258,78 +254,8 @@ service mongodb stop
 
 <p><a href="http://my.oschina.net/fsxchen/blog/261887">http://my.oschina.net/fsxchen/blog/261887</a></p>
 </div>
-                <div class="more">
-                    <a href="/2016/5/19/2016-05-19-13-59.html" class="btn pure-button pure-button-primary">继续阅读..</a>
-                </div>
             </div>
             
-            <div class="post">
-                <h3 class="post-header"><a href="/2016/2/19/centos7-git-server.html">Centos7 搭建git服务器</a></h3>
-                <div class="post-meta">
-                    <small>2016-2-19</small>
-                </div>
-                <div class="post-description"><h4>安装</h4>
-<pre><code>yum install -y git
-</code></pre>
-
-<h4>创建用户</h4>
-<pre><code>adduser git
-</code></pre>
-
-<h4>创建登录证书</h4>
-<pre><code>cd /home/git
-
-mkdir .ssh
-
-cd .ssh
-
-//生成认证文件 authorized_keys 
-//公钥id_rsa.pub
-ssh-keygen -t rsa
-
-//公钥写入认证文件
-//这里可以将其他客户端的公钥写入这个文件进行授权认证
-cat id_rsa.pub &gt;&gt; authorized_keys 
-</code></pre>
-
-<h4>初始化git仓库</h4>
-<pre><code>mkdir /data/git
-
-cd /data/git
-
-//创建一个裸仓库
-git init --bare empty.git
-
-chown -R git:git empty.git
-</code></pre>
-
-<h4>禁用shell</h4>
-<pre><code>vim /etc/passwd
-</code></pre>
-
-<p>将</p>
-<pre><code>git:x:1001:1001:,,,:/home/git:/bin/bash
-</code></pre>
-
-<p>修改为</p>
-<pre><code>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
-</code></pre>
-
-<h4>clone</h4>
-<pre><code>git clone git@x.x.x.x:/data/git/emtpy.git
-</code></pre>
-</div>
-                <div class="more">
-                    <a href="/2016/2/19/centos7-git-server.html" class="btn pure-button pure-button-primary">继续阅读..</a>
-                </div>
-            </div>
-            
-        </div>
-        <div class="pagination pure-g">
-            <ul>
-                
-                
-            </ul>
         </div>
         <hr/>
 <div class="footer">
